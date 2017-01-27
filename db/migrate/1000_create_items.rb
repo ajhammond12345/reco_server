@@ -5,7 +5,7 @@ class CreateItems < ActiveRecord::Migration
 	def change
 		create_table :items do |t|
 			t.string :item_name
-			t.string :item_condition
+			t.integer :item_condition
 			t.string :item_description
 			t.integer :item_price_in_cents
 			t.integer :item_purchase_state

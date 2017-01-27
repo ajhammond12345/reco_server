@@ -9,8 +9,13 @@ Rails.application.routes.draw do
 	get 'total', to: 'items#total'
 
 	resources :items do
+		member do
+#			get :filtered_list
+		end
 		collection do
 			get :nicolas
+#			get :filtered_list
+			post :filtered_list
 		end
 	end
 

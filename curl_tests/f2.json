@@ -1,0 +1,9 @@
+{
+	"data": {
+		"example_string": "example_string",
+		"condition_min": 100,
+		"condition_max": 300,
+		"price_min": 20000,
+		"price_max": 1000000
+	}
+}

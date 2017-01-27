@@ -23,6 +23,7 @@ This is a list of all items
   <thead>
     <th>ID</th>
     <th>Name</th>
+    <th>Condition raw</th>
     <th>Condition</th>
     <th>Price</th>
     <th>Description</th>
@@ -38,6 +39,7 @@ This is a list of all items
 	    <td> <%= item.id %> </td>
 	    <td> <%= item.item_name %> </td>
 	    <td> <%= item.item_condition %> </td>
+	    <td> <%= ITEM_CONDITIONS_TYPES[item.item_condition] %> </td>
 	    <td> <%= item.item_price_in_cents %> </td>
 	    <td> <%= item.item_description %> </td>
 	    <td> <%= item.item_purchase_state %> </td>

@@ -14,10 +14,23 @@
  	 <%= f.text_field :item_name%>
   </div>
 
+<% if 1 > 2 %>
   <div class="field">
  	 <%= f.label :item_condition %><br>
  	 <%= f.text_field :item_condition%>
   </div>
+<% end  %>
+
+  <div class="field">
+ 	 <%= f.label :item_condition %><br>
+<select name="item[item_condition]">
+    <% ITEM_CONDITIONS_TYPES.each do |h,k| %>
+        <option value="<%= k %>"><%= h %></option>
+    <% end %>
+</select>
+
+  </div>
+
 
   <div class="field">
  	 <%= f.label :item_price_in_cents %><br>
@@ -28,6 +41,7 @@
  	 <%= f.label :item_description %><br>
  	 <%= f.text_field :item_description%>
   </div>
+
   
   <div class="field">
  	 <%= f.label :item_purchase_state %><br>
