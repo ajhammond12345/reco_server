@@ -1,0 +1,16 @@
+<%
+	# Passed in
+	# item
+%>
+
+<% if item.nil? then %>
+	No comments
+<% else %>
+	<% item.comments.each do |comment| %>
+		<%= comment.comment_text %>
+<hr>
+		<br>
+	<% end %>
+<% end %>
+	
+

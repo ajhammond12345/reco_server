@@ -1,0 +1,26 @@
+<%= form_for(@comment,
+  html: { class: 'form-horizontal' },
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  },
+  :html => { :multipart => true }
+) do |f| %>
+
+  <div class="field">
+	  <%= f.label :comment_text %><br>
+ 	 <%= f.text_field :comment_text%>
+  </div>
+
+  <div class="field">
+ 	 <%= f.label :item_id %><br>
+ 	 <%= f.text_field :item_id%>
+  </div>
+
+  <div class="actions">
+  	<%= f.submit %>
+  </div>
+
+<% end %>
