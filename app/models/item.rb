@@ -16,18 +16,20 @@ class Item < ActiveRecord::Base
      
 
    
-	attr_accessor :image_data
-	before_save :decode_image_data
+#	attr_accessor :va_image_data
 
-  	def decode_image_data
+  	def decode_image_data(va_image_data)
 
-    		if self.image_data.present?
-        		data = StringIO.new(Base64.decode64(self.image_data))
+    		if va_image_data.present?
+        		data = StringIO.new(Base64.decode64(va_image_data))
         		data.class.class_eval {attr_accessor :original_filename, :content_type}
-        		data.original_filename = self.id.to_s + ".png"
+        		data.original_filename =  "image.png"
         		data.content_type = "image/png"
-
+			logger.debug("Data content type for image: #{data.content_type}")
+			logger.debug("Data filename for image: #{data.original_filename}")
+			logger.debug("Data for image: #{data}")
         		self.item_image = data
+			logger.debug("Image: #{self.item_image}")
     		end
   	end
 

@@ -5,7 +5,15 @@ class ItemsController < ApplicationController
 
 def create
     @item = Item.new(item_params)
+#	new_item_params = params[:item]
+#	logger.debug("New Item Params = #{new_item_params}")
+#	va_image_data = new_item_params[:va_image_data]
+#	logger.debug("Va image data = #{va_image_data}")
+	logger.debug("#{params[:va_image_data]} VAIMAGEDATA")
+    @item.decode_image_data(params[:va_image_data])
+	logger.debug("#{@item[:item_image]} ITEMIMAGE")
     respond_to do |format|
+       
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.'}
         format.json { render json: @item.errors, status: :created }
@@ -136,6 +144,6 @@ logger.debug("price_max=#{price_max}")
 			:item_description,
 			:item_price_in_cents,
 			:item_purchase_state, 
-			:item_image)
+			:item_image) 
 	end  
 end
