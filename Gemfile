@@ -44,7 +44,11 @@ gem 'simple_form'
 
 gem 'carrierwave'
 
+gem 'fog', require: 'fog/aws'
+
 gem 'carrierwave-base64'
+
+gem 'mini_magick'
 
 gem 'paperclip'
 
