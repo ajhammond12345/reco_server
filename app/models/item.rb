@@ -23,8 +23,8 @@ class Item < ActiveRecord::Base
     		if va_image_data.present?
         		data = StringIO.new(Base64.decode64(va_image_data))
         		data.class.class_eval {attr_accessor :original_filename, :content_type}
-        		data.original_filename =  "image.png"
-        		data.content_type = "image/png"
+        		data.original_filename =  "image.jpeg"
+        		data.content_type = "image/jpeg"
 			logger.debug("Data content type for image: #{data.content_type}")
 			logger.debug("Data filename for image: #{data.original_filename}")
 			logger.debug("Data for image: #{data}")
