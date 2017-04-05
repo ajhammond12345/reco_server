@@ -1,0 +1,17 @@
+<%
+	# Passed in
+	# user
+%>
+
+<% if user.nil? then %>
+	No comments
+<% else %>
+	<% user.items.each do |item| %>
+
+		<%= item.item_name%>
+<hr>
+		<br>
+	<% end %>
+<% end %>
+	
+

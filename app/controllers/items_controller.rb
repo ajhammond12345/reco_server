@@ -139,7 +139,8 @@ logger.debug("price_max=#{price_max}")
 
 	# See https://rubyplus.com/articles/3281-Mass-Assignment-in-Rails-5
 	def item_params
-	  params.require(:item).permit(:item_name,
+	  params.require(:item).permit(:user_id, 
+			:item_name,
 			:item_condition,
 			:item_description,
 			:item_price_in_cents,

@@ -4,6 +4,7 @@
 class CreateItems < ActiveRecord::Migration 
 	def change
 		create_table :items do |t|
+			t.integer :user_id
 			t.string :item_name
 			t.integer :item_condition
 			t.string :item_description

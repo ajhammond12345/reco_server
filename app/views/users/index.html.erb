@@ -1,0 +1,52 @@
+<%# Copyright (C) 2017 Alexander Hammond %>
+<%# page_title 'Users' %>
+
+<div class="page-header">
+  <h3>Users</h3>
+This is a list of all users
+</div>
+
+<P>
+<h4>User Information</h4>
+<% count = @users.count %>
+<% if count == 1 %>
+  There is <%= count %> user.
+<% else %>
+  There are <%= count %> users.
+<% end %>
+
+<% sort_column = 1 %>
+<table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
+  <thead>
+    <th>Username</th>
+    <th>Password</th>
+    <th>Email Address</th>
+    <th>Number of Items</th>
+    <th>Items</th>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr id="<%= dom_id user %>">
+	    <td> <%= user.username %> </td>
+	    <td> <%= user.user_password %> </td>
+	    <td> <%= user.email_address %> </td>
+            <td> <%= user.items.size %> </td>
+	    <td> <%= render 'user_items', user: user %></td>
+	<td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_user_path(user), :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      user_path(user),
+                      :method => :delete,
+                      :remote => true,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+	<%= link_to "delete", user, method: :delete,
+           data: { confirm: "You sure?" } %>
+
+        </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

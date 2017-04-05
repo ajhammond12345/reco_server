@@ -28,6 +28,7 @@ This is a list of all items
     <th>Price</th>
     <th>Description</th>
     <th>Purchase State</th>
+    <th>User ID</th>
     <th>Image</th>
     <th># Comments</th>
     <th>Comments</th>
@@ -43,6 +44,7 @@ This is a list of all items
 	    <td> <%= item.item_price_in_cents %> </td>
 	    <td> <%= item.item_description %> </td>
 	    <td> <%= item.item_purchase_state %> </td>
+	    <td> <%= item.user_id %> </td>
 	    <td> <%= image_tag(item.item_image_url.to_s) %> </td>
 	    <td> <%= item.comments.size %> </td>
 	    <td> <%= render 'item_comments', item: item %></td>
