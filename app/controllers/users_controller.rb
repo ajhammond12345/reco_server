@@ -3,26 +3,28 @@ class UsersController < ApplicationController
   protect_from_forgery unless: -> { request.format.json? }
   
 
-def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.'}
-        format.json { render json: @user}
-      else
-        format.html {render action: 'new'}
-	format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    def create
+        @user = User.new(user_params)
+        respond_to do |format|
+            if @user.save
+                format.html { redirect_to @user, notice:
+                              'User was successfully created.'}
+                format.json { render json: @user}
+            else
+                format.html {render action: 'new'}
+	            format.json { render json: @user.errors,
+                           status: :unprocessable_entity }
+            end
+        end
     end
-end
 
-  # DELETE /user/1
-  def destroy
-    User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    # DELETE /user/1
+    def destroy
+        User.find(params[:id]).destroy
+        flash[:success] = "User deleted"
 
-    redirect_to users_url, notice: 'User was successfully destroyed.'
-  end
+        redirect_to users_url, notice: 'User was successfully destroyed.'
+    end
 
 	def edit
 		@user = User.find(params[:id])
@@ -49,6 +51,18 @@ end
 			format.json {render json: @users}
 		end
 	end
+
+    def login
+        data_params = params[:data]
+        @user = User.find_by username: (data_params[:username])
+        password_check = @user.user_password
+        if (data_params[:password] == password_check)
+            respond_to do |format|
+                format.html
+                format.json {render json: @user}
+            end
+        end
+    end
 		
 	def unique_username
 		data_params = params[:data]
@@ -67,21 +81,20 @@ end
 			format.json {render json: @user, include: :items}
 		end
 	end
-#
-#  # PATCH/PUT /users/1
-  def update
-    @user = User.find(params[:id])
-    if @user.update_attributes!(user_params)
-#      redirect_to @user, notice: 'User was successfully updated.'
-      render action: 'edit'
-    else
-      render action: 'edit'
+    #
+    #PATCH/PUT /users/1
+    def update
+        @user = User.find(params[:id])
+        if @user.update_attributes!(user_params)
+        #redirect_to @user, notice: 'User was successfully updated.'
+        render action: 'edit'
+        else
+            render action: 'edit'
+        end
     end
-  end
-#
+
 
 	private
-
 	# See https://rubyplus.com/articles/3281-Mass-Assignment-in-Rails-5
 	def user_params
 	  params.require(:user).permit(:username,

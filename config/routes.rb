@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 		collection do
 			post :unique_username
 			post :unique_email
+            post :login
 		end
 	end
 

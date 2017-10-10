@@ -16,7 +16,7 @@ def create
        
       if @item.save
         format.html { redirect_to @item, notice: 'Item was successfully created.'}
-        format.json { render json: @item.errors, status: :created }
+        format.json { render json: @item.id, status: :created }
       else
         format.html {render action: 'new'}
 	format.json { render json: @item.errors, status: :unprocessable_entity }
