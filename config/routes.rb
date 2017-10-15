@@ -12,37 +12,18 @@ Rails.application.routes.draw do
 		end
 	end
 
-	resources :comments do
+	resources :managers do
 	end
-
-	
-	get 'total', to: 'items#total'
-
-	resources :items do
-		member do
-#			get :filtered_list
-		end
-		collection do
-			get :nicolas
-#			get :filtered_list
-			post :filtered_list
-		end
+	resources :tenants do
 	end
-
-# do
-#		collection do
-#		end
-#		member do
-#			get :show
-#			get :create
-#			get :destroy
-#			get :edit
-#			get :index
-#			get :new
-#			get :update
-#			post :update
-#			post :edit
-#		end
-#	end
-
+	resources :rentals do
+	end
+	resources :expenses do
+	end
+	resources :contracts do
+	end
+	resources :notifications do
+	end
+	resources :pictures do
+	end
 end

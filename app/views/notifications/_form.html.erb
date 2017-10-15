@@ -1,4 +1,4 @@
-<%= form_for(@user,
+<%= form_for(@notification,
   html: { class: 'form-horizontal' },
   wrapper_mappings: {
     check_boxes: :horizontal_radio_and_checkboxes,
@@ -10,27 +10,30 @@
 ) do |f| %>
 
   <div class="field">
-	  <%= f.label :username %><br>
- 	 <%= f.text_field :username%>
+	  <%= f.label :notification_title%><br>
+ 	 <%= f.text_field :notification_title%>
+  </div>
+
+<% if 1 > 2 %>
+  <div class="field">
+ 	 <%= f.label :notification_text%><br>
+ 	 <%= f.text_field :notification_text%>
+  </div>
+<% end  %>
+
+  <div class="field">
+  	<%= f.label :notification_resolved%><br>
+  	<%= f.text_field :notification_resolved%>
   </div>
 
   <div class="field">
- 	 <%= f.label :user_password %><br>
- 	 <%= f.text_field :user_password%>
-  </div>
-  
-  <div class="field">
- 	 <%= f.label :email_address %><br>
- 	 <%= f.text_field :email_address %>
-  </div>
-
-  <div class="field">
- 	 <%= f.label :user_phone_number%><br>
- 	 <%= f.text_field :user_phone_number%>
+ 	 <%= f.label :notification_is_problem_with_property%><br>
+ 	 <%= f.text_field :notification_is_problem_with_property%>
   </div>
 
   <div class="actions">
   	<%= f.submit %>
   </div>
+
 
 <% end %>

@@ -1,0 +1,51 @@
+<%# Copyright (C) 2017 Alexander Hammond %>
+<%# page_title 'Contracts' %>
+
+<div class="page-header">
+  <h3>Contracts</h3>
+This is a list of all contracts
+</div>
+<h4>Contracts Information</h4>
+<% count = @contracts.count %>
+<% if count == 1 %>
+  There is <%= count %> contract.
+<% else %>
+  There are <%= count %> contracts.
+<% end %>
+
+<% sort_column = 1 %>
+<table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
+  <thead>
+    <th>Contract Signed?</th>
+    <th>Date Signed</th>
+    <th>Date Ends</th>
+    <th>Pdf filepath</th>
+    <th>Property ID</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @contracts.each do |contract| %>
+      <tr id="<%= dom_id contract %>">
+	    <td> <%= contract.contract_signed %> </td>
+	    <td> <%= contract.contract_date_signed %> </td>
+	    <td> <%= contract.contract_date_ended%> </td>
+	    <td> <%= contract.contract_pdf_file_path%> </td>
+	    <td> <%= contract.contract_property_id%> </td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_contract_path(contract), :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      contract_path(contract),
+                      :method => :delete,
+                      :remote => true,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+	<%= link_to "delete", contract, method: :delete,
+           data: { confirm: "You sure?" } %>
+
+        </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -2,8 +2,8 @@
 
 require 'json'
 
-class Comment < ActiveRecord::Base
-	belongs_to :item
+class Notification < ActiveRecord::Base
+    belongs_to :user
 	#Calls set_default_values after it has finished initializing
 	after_initialize :set_default_values, if: :new_record?
 
@@ -21,4 +21,3 @@ class Comment < ActiveRecord::Base
 		end
 end
 
-	#add_attachment :posts, :item_image	

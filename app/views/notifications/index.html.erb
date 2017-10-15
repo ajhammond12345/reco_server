@@ -1,0 +1,49 @@
+<%# Copyright (C) 2017 Alexander Hammond %>
+<%# page_title 'Notifications' %>
+
+<div class="page-header">
+  <h3>Notifications</h3>
+This is a list of all notifications
+</div>
+<h4>Notifications Information</h4>
+<% count = @notifications.count %>
+<% if count == 1 %>
+  There is <%= count %> notification.
+<% else %>
+  There are <%= count %> notifications.
+<% end %>
+
+<% sort_column = 1 %>
+<table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
+  <thead>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Resolved?</th>
+    <th>Problem with Property?</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @notifications.each do |notification| %>
+      <tr id="<%= dom_id notification %>">
+	    <td> <%= notification.notification_title %> </td>
+	    <td> <%= notification.notification_text%> </td>
+	    <td> <%= notification.notification_resolved%> </td>
+	    <td> <%= notification.notification_is_problem_with_property%> </td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_notification_path(notification), :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      notification_path(notification),
+                      :method => :delete,
+                      :remote => true,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+	<%= link_to "delete", notification, method: :delete,
+           data: { confirm: "You sure?" } %>
+
+        </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

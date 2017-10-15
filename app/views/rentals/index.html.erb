@@ -1,0 +1,49 @@
+<%# Copyright (C) 2017 Alexander Hammond %>
+<%# page_title 'Rentals' %>
+
+<div class="page-header">
+  <h3>Rentals</h3>
+This is a list of all rentals
+</div>
+<h4>Rentals Information</h4>
+<% count = @rentals.count %>
+<% if count == 1 %>
+  There is <%= count %> rental.
+<% else %>
+  There are <%= count %> rentals.
+<% end %>
+
+<% sort_column = 1 %>
+<table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
+  <thead>
+    <th>Address</th>
+    <th>Tenant ID</th>
+    <th>Manager ID</th>
+    <th>Rent</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @rentals.each do |rental| %>
+      <tr id="<%= dom_id rental %>">
+	    <td> <%= rental.rental_address %> </td>
+	    <td> <%= rental.rental_tenant_id %> </td>
+	    <td> <%= rental.manager_id%> </td>
+	    <td> <%= rental.rental_rent%> </td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_rental_path(rental), :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      rental_path(rental),
+                      :method => :delete,
+                      :remote => true,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+	<%= link_to "delete", rental, method: :delete,
+           data: { confirm: "You sure?" } %>
+
+        </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

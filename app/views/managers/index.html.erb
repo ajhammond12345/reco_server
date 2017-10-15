@@ -1,42 +1,40 @@
 <%# Copyright (C) 2017 Alexander Hammond %>
-<%# page_title 'Comments' %>
+<%# page_title 'Managers' %>
 
 <div class="page-header">
-  <h3>Comments</h3>
-This is a list of all comments
+  <h3>Managers</h3>
+This is a list of all managers
 </div>
-
-<P>
-<h4>Comments Information</h4>
-<% count = @comments.count %>
+<h4>Managers Information</h4>
+<% count = @managers.count %>
 <% if count == 1 %>
-  There is <%= count %> comment.
+  There is <%= count %> manager.
 <% else %>
-  There are <%= count %> comments.
+  There are <%= count %> managers.
 <% end %>
 
 <% sort_column = 1 %>
 <table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
   <thead>
-    <th>Item ID</th>
-    <th>Text</th>
+    <th>Manager User ID</th>
+    <th>Manager Code</th>
+    <th>Options</th>
   </thead>
   <tbody>
-    <% @comments.each do |comment| %>
-      <tr id="<%= dom_id comment %>">
-	    <td> <%= comment.item_id %> </td>
-	    <td> <%= comment.comment_text %> </td>
-	    <td> Comments </td>
+    <% @managers.each do |manager| %>
+      <tr id="<%= dom_id manager %>">
+	    <td> <%= manager.manager_user_id%> </td>
+	    <td> <%= manager.manager_code %> </td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_comment_path(comment), :class => 'btn btn-default btn-xs' %>
+                      edit_manager_path(manager), :class => 'btn btn-default btn-xs' %>
 	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      comment_path(comment),
+                      manager_path(manager),
                       :method => :delete,
                       :remote => true,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
-	<%= link_to "delete", comment, method: :delete,
+	<%= link_to "delete", manager, method: :delete,
            data: { confirm: "You sure?" } %>
 
         </td>

@@ -10,23 +10,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 1020) do
+ActiveRecord::Schema.define(version: 1070) do
 
-  create_table "comments", force: :cascade do |t|
-    t.integer  "item_id"
-    t.text     "comment_text"
+  create_table "contracts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "contract_signed"
+    t.string   "contract_date_signed"
+    t.string   "contract_date_ended"
+    t.string   "contract_pdf_file_path"
+    t.integer  "contract_property_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "items", force: :cascade do |t|
+  create_table "expenses", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "item_name"
-    t.integer  "item_condition"
-    t.string   "item_description"
-    t.integer  "item_price_in_cents"
-    t.integer  "item_purchase_state"
-    t.string   "item_image"
+    t.integer  "expense_amount"
+    t.string   "expense_reason"
+    t.integer  "expense_property_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "managers", force: :cascade do |t|
+    t.integer  "manager_user_id"
+    t.string   "manager_code"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "notification_title"
+    t.string   "notification_text"
+    t.boolean  "notification_resolved"
+    t.boolean  "notification_is_problem_with_property"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.boolean  "picture_is_before_photo"
+    t.string   "picture_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "rentals", force: :cascade do |t|
+    t.string   "rental_address"
+    t.integer  "rental_tenant_id"
+    t.integer  "manager_id"
+    t.integer  "rental_rent"
+    t.string   "rental_image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "tenants", force: :cascade do |t|
+    t.integer  "tenant_user_id"
+    t.integer  "tenant_rental_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -35,6 +77,9 @@ ActiveRecord::Schema.define(version: 1020) do
     t.string   "username"
     t.string   "user_password"
     t.string   "email_address"
+    t.string   "user_address"
+    t.string   "user_name"
+    t.string   "user_phone_number"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -2,10 +2,8 @@
 
 require 'json'
 
-class User < ActiveRecord::Base
-	has_many :expenses, dependent: :destroy
-	has_many :contracts, dependent: :destroy
-	has_many :notifications, dependent: :destroy
+class Manager < ActiveRecord::Base
+	has_many :rentals, dependent: :destroy
 	#Calls set_default_values after it has finished initializing
 	after_initialize :set_default_values, if: :new_record?
 

@@ -31,10 +31,10 @@ class UsersController < ApplicationController
 	end
 
 	def index
-		@users = User.includes(:items)
+		@users = User.includes(:notifications, :contracts, :expenses)
 		respond_to do |format|
 			format.html
-			format.json {render json: @users, include: :items}
+			format.json {render json: @users, include: [:notifications, :contracts, :expenses]}
 		end
 	end
 
@@ -78,7 +78,7 @@ class UsersController < ApplicationController
 		@user = User.find(params[:id])
 		respond_to do |format|
 			format.html
-			format.json {render json: @user, include: :items}
+			format.json {render json: @user, include: [:notifications, :contracts, :expenses]}
 		end
 	end
     #
@@ -100,6 +100,10 @@ class UsersController < ApplicationController
 	  params.require(:user).permit(:username,
                                    :user_password,
                                    :email_address,
+                                   :user_first_name,
+                                   :user_last_name,
+                                   :user_address,
+                                   :user_phone_number,
                                    :confirmed)
 	end  
 end

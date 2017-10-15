@@ -1,11 +1,9 @@
-#Copyright Alexander Hammond January 16, 2017
+#Copyright Alexander Hammond October 14, 2017
 
 require 'json'
 
-class User < ActiveRecord::Base
-	has_many :expenses, dependent: :destroy
-	has_many :contracts, dependent: :destroy
-	has_many :notifications, dependent: :destroy
+class Expense < ActiveRecord::Base
+    belongs_to :user
 	#Calls set_default_values after it has finished initializing
 	after_initialize :set_default_values, if: :new_record?
 

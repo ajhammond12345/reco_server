@@ -1,0 +1,45 @@
+<%# Copyright (C) 2017 Alexander Hammond %>
+<%# page_title 'Pictures' %>
+
+<div class="page-header">
+  <h3>Pictures</h3>
+This is a list of all pictures
+</div>
+<h4>Pictures Information</h4>
+<% count = @pictures.count %>
+<% if count == 1 %>
+  There is <%= count %> picture.
+<% else %>
+  There are <%= count %> pictures.
+<% end %>
+
+<% sort_column = 1 %>
+<table class="table table-striped table-condensed all-tools-no-show-datatable" data-sort='[[<%= sort_column %>, "asc"]]'>
+  <thead>
+    <th>Is before photo?</th>
+    <th>Image</th>
+    <th>Options</th>
+  </thead>
+  <tbody>
+    <% @pictures.each do |picture| %>
+      <tr id="<%= dom_id picture %>">
+	    <td> <%= picture.picture_is_before_photo%> </td>
+	    <td> <%= image_tag(picture.image.to_s) %> </td>
+        <td>
+          <%= link_to t('.edit', :default => t("helpers.links.edit")),
+                      edit_picture_path(picture), :class => 'btn btn-default btn-xs' %>
+	<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+                      picture_path(picture),
+                      :method => :delete,
+                      :remote => true,
+                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+                      :class => 'btn btn-xs btn-danger' %>
+	<%= link_to "delete", picture, method: :delete,
+           data: { confirm: "You sure?" } %>
+
+        </td>
+
+    </tr>
+    <% end %>
+  </tbody>
+</table>

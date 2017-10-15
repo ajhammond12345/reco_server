@@ -1,0 +1,48 @@
+<%= form_for(@contract,
+  html: { class: 'form-horizontal' },
+  wrapper_mappings: {
+    check_boxes: :horizontal_radio_and_checkboxes,
+    radio_buttons: :horizontal_radio_and_checkboxes,
+    file: :horizontal_file_input,
+    boolean: :horizontal_boolean
+  },
+  :html => { :multipart => true }
+) do |f| %>
+
+  <div class="field">
+	  <%= f.label :contract_signed %><br>
+ 	 <%= f.text_field :contract_signed%>
+  </div>
+
+  <div class="field">
+ 	 <%= f.label :contract_date_signed%><br>
+ 	 <%= f.text_field :contract_date_signed%>
+  </div>
+
+  <div class="field">
+ 	 <%= f.label :contract_date_ended%><br>
+ 	 <%= f.text_field :contract_date_ended%>
+  </div>
+
+  
+  <div class="field">
+ 	 <%= f.label :contract_pdf_file_path%><br>
+ 	 <%= f.text_field :contract_pdf_file_path%>
+  </div>
+  
+  <div class="field">
+  	<%= f.label :user_id%><br>
+  	<%= f.text_field :user_id%>
+  </div>
+
+  <div class="field">
+  	<%= f.label :contract_property_id%><br>
+  	<%= f.text_field :contract_property_id%>
+  </div>
+  
+  <div class="actions">
+  	<%= f.submit %>
+  </div>
+
+
+<% end %>
